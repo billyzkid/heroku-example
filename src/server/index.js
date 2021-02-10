@@ -1,22 +1,29 @@
-const path = require('path');
-const express = require('express');
+import path from 'path';
+import url from 'url';
+import express from 'express';
+import {Server as HttpServer} from 'http';
+import {Server as SocketServer} from 'socket.io';
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const httpServer = new HttpServer(app);
+const socketServer = new SocketServer(httpServer);
+const port = process.env.PORT || 4000;
 
 let users = [];
 
 app.use(express.static(path.join(__dirname, '../client')));
 
-io.on('connection', function(socket) {
+socketServer.on('connection', (socket) => {
   console.log(`connecting ${socket.id}`);
 
-  socket.on('disconnect', function() {
+  socket.on('disconnect', () => {
     console.log(`disconnecting ${socket.id}`)
   });
 
-  socket.on('new user', function(data) {
+  socket.on('new user', (data) => {
     console.log(`welcoming ${socket.id} (${data.name})`);
 
     users.push({
@@ -33,8 +40,6 @@ io.on('connection', function(socket) {
 
 });
 
-const port = process.env.PORT || 4000;
-
-server.listen(port, function() {
+httpServer.listen(port, () => {
   console.log(`You're tuned in to port ${port}!`);
 });
