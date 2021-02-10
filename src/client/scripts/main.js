@@ -3,4 +3,12 @@ $(document).ready(function() {
 
   var socket = io();
 
+  socket.emit('new user', { name: "Will" });
+
+  socket.on('welcome', function(data) {
+    users = data.users;
+
+    $('body').append(`<p>${data.greeting}!</p>`);
+  });
+
 });
