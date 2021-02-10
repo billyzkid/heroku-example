@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
@@ -10,10 +11,6 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 io.on('connection', function(socket) {
   console.log(`connecting ${socket.id}`);
-
-  //REMOVE FOR PRODUCTION, THIS IS JUST TO MAKE MY LIFE EASIER WHILE I MAKE CHANGES
-  //socket.emit('server reset');
-  //REMOVE FOR PRODUCTION
 
   socket.on('disconnect', function() {
     console.log(`disconnecting ${socket.id}`)
