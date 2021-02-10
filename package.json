@@ -1,7 +1,7 @@
 {
-  "name": "project_01_blackjack",
+  "name": "heroku-example",
   "version": "1.0.0",
-  "description": "Blackjack Online",
+  "description": "Heroku Example",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,16 +9,8 @@
     "dev": "nodemon server.js",
     "debugger": "DEBUG=*:* npm run dev"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hewhowearspants/Project-01-Blackjack.git"
-  },
-  "author": "Ryan Edwards",
+  "author": "Will Allan",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hewhowearspants/Project-01-Blackjack/issues"
-  },
-  "homepage": "https://github.com/hewhowearspants/Project-01-Blackjack#readme",
   "dependencies": {
     "express": "^4.15.4",
     "socket.io": "^2.0.3"
