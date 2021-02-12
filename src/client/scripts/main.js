@@ -1,14 +1,14 @@
-import Card from './Card.js'
+import User from './User.js'
 
-console.log(new Card('Ace', 'Spades'));
+let user = new User('Will');
 
 $(document).ready(function() {
   console.log('main.js loaded');
 
   let users = [];
-  var socket = io();
+  let socket = io();
 
-  socket.emit('new user', { name: 'Will' });
+  socket.emit('new user', { name: user.name });
 
   socket.on('welcome', function(data) {
     users = data.users;
